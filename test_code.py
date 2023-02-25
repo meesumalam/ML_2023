@@ -1,11 +1,11 @@
 import pandas as pd
 
 # Load the hate speech lexicon
-with open('hate_lexicon_wiegand.txt', 'r') as f:
+with open('hate_lexicon_small.txt', 'r') as f:
     hate_speech_lexicon = set(f.read().splitlines())
 
 # Load the dataset
-fdata = pd.read_csv('WaseemDataSet.txt', sep='\t', header= None, names=['text']) #add waseemdataset here
+f2data = pd.read_csv('WaseemDataSet.txt', sep='\t', header= None, names=['text']) #add waseemdataset here
 
 
 # Define a function to create feature vectors
@@ -34,11 +34,11 @@ def create_feature_vectors(data):
     return feature_vectors
 
 # Create feature vectors for each set
-fdata_feature_vectors = create_feature_vectors(fdata)
+fdata_feature_vectors = create_feature_vectors(f2data)
 
 
 # Write the feature vectors to separate files
-with open('fdata_features.txt', 'w') as f:
+with open('f2data_features.txt', 'w') as f:
     for feature_vector in fdata_feature_vectors:
         f.write(' '.join(map(str, feature_vector)) + '\n')
 
