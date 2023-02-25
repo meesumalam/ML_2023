@@ -26,7 +26,7 @@ if __name__ == "__main__":
     df = pd.read_fwf('waseemDataSet.txt', sep='\t', header=None, names=['Comment'])
 
     df_new = extract_labels(df)
-    
-    with open("WaseemDataWithLabels.csv", "w") as f:
-        df_new = df_new.to_string(index=False)
-        f.writelines(df_new)
+    df_new.to_csv("WaseemDataWithLabels2.txt", sep='\t', index=False)
+    #with open("WaseemDataWithLabels.txt", "w") as f:
+    #    df_new = df_new.to_string(index=False)
+    #    f.writelines(df_new)

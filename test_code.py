@@ -1,12 +1,19 @@
 import pandas as pd
 
 # Load the hate speech lexicon
-with open('hate_lexicon_small.txt', 'r') as f:
+with open('hate_lexicon_wiegand.txt', 'r') as f:
     hate_speech_lexicon = set(f.read().splitlines())
 
 # Load the dataset
-f2data = pd.read_csv('WaseemDataSet.txt', sep='\t', header= None, names=['text']) #add waseemdataset here
 
+f2ldata = pd.read_csv('WaseemDataWithLabels2.txt', sep='\t') #add waseemdataset here
+
+
+train = pd.read_csv('train.txt', sep='\t') #add waseemdataset here
+
+dev = pd.read_csv('dev.txt', sep='\t') #add waseemdataset here
+
+test = pd.read_csv('test.txt', sep='\t') #add waseemdataset here
 
 # Define a function to create feature vectors
 def create_feature_vectors(data):
@@ -34,12 +41,28 @@ def create_feature_vectors(data):
     return feature_vectors
 
 # Create feature vectors for each set
-fdata_feature_vectors = create_feature_vectors(f2data)
+fdata_feature_vectors = create_feature_vectors(f2ldata)
+
+ftrain_feature_vectors = create_feature_vectors(train)
+fdev_feature_vectors = create_feature_vectors(dev)
+ftest_feature_vectors = create_feature_vectors(test)
 
 
 # Write the feature vectors to separate files
-with open('f2data_features.txt', 'w') as f:
+with open('f2ldata_features.txt', 'w') as f:
     for feature_vector in fdata_feature_vectors:
+        f.write(' '.join(map(str, feature_vector)) + '\n')
+
+with open('f2ltrain_features.txt', 'w') as f:
+    for feature_vector in ftrain_feature_vectors:
+        f.write(' '.join(map(str, feature_vector)) + '\n')
+
+with open('f2ldev_features.txt', 'w') as f:
+    for feature_vector in fdev_feature_vectors:
+        f.write(' '.join(map(str, feature_vector)) + '\n')
+
+with open('f2ltest_features.txt', 'w') as f:
+    for feature_vector in ftest_feature_vectors:
         f.write(' '.join(map(str, feature_vector)) + '\n')
 
 
