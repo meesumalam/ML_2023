@@ -23,7 +23,7 @@ def extract_labels(df):
     )
 
 if __name__ == "__main__":
-    df = pd.read_df = pd.read_fwf('waseemDataSet.txt', sep='\t', header=None, names=['Comment'])
+    df = pd.read_fwf('waseemDataSet.txt', sep='\t', header=None, names=['Comment'])
 
     df_3 = extract_labels(df)
 
